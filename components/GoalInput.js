@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, View, Button, TextInput, Modal } from 'react-native';
+import { StyleSheet, View, Button, TextInput, Modal, Image } from 'react-native';
 
 const GoalInput = (props) => {
     const [enteredGoalText, setEnteredGoalText] = useState('');
@@ -17,13 +17,14 @@ const GoalInput = (props) => {
     return (
         <Modal visible={props.visible} animationType="slide">
             <View style={styles.inputContainer}>
+                <Image source={require('../assets/images/goal.png')} style={styles.image} />
                 <TextInput style={styles.textInput} placeholder='Your course goal' onChangeText={goalInputHandler} value={enteredGoalText} />
                 <View style={styles.buttonContainer}>
                     <View style={styles.button}>
-                        <Button title='Add Goal' onPress={addGoalHandler} />
+                        <Button title='Cancel' onPress={props.onCancel} color='#f31282' />
                     </View>
                     <View style={styles.button}>
-                        <Button title='Cancel' onPress={props.onCancel} />
+                        <Button title='Add Goal' onPress={addGoalHandler} color='#b180f0' />
                     </View>
                 </View>
             </View>
@@ -38,16 +39,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 24,
         padding: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: "#cccccc"
+        backgroundColor: '#311b6b'
     },
     textInput: {
         borderWidth: 1,
-        borderColor: '#cccccc',
+        borderColor: '#e4d0ff',
+        borderRadius: 6,
+        backgroundColor: '#e4d0ff',
+        color: '#120438',
         width: '100%',
-        padding: 8
+        padding: 16
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -56,5 +58,10 @@ const styles = StyleSheet.create({
     button: {
         width: 100,
         marginHorizontal: 8
+    },
+    image: {
+        width: 100,
+        height: 100,
+        margin: 20
     }
 });
